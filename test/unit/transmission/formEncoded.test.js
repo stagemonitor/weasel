@@ -4,11 +4,14 @@ jest.mock('../../../lib/vars');
 describe('transmission/formEncoded', () => {
   let browserMock;
   let sendBeacon;
+  let varsMock;
 
   beforeEach(() => {
     browserMock = require('../../../lib/browser');
     browserMock.reset();
     sendBeacon = require('../../../lib/transmission/formEncoded').sendBeacon;
+    varsMock = require('../../../lib/vars').default;
+    varsMock.maxLengthForImgRequest = 2000;
   });
 
   it('must do nothing when there is nothing to transmit', () => {
